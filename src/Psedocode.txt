@@ -1,0 +1,54 @@
+Encode: 
+
+func Encode:
+    Loop over input file while reading character:
+        Check if the letter has occured a below the base
+            if not 
+                add symbol to trie at that level and encode_symbol()
+                recursively move upwards and when letter 
+                    is encountered update count and reset 
+                    base node
+        encode_symbol()
+    
+    Add End of Input Character to output
+
+
+func encode_symbol:
+    Compute cumulative frequency for that row in the tree, and range of input symbol 
+    range = (high - low + 1) / cumulative_frq_count
+    high = low + symbol_high * range - 1;
+	low = low + symbol_low * range;
+
+    while MSB of low and high match:
+        output->write MSB
+        Left Shift low
+        Left Shift high and set 0th bit to 1
+    
+
+
+Decode:
+
+func Decode:
+    Take Input Buffer of 32 bits
+    Loop over input file while reading bitwise:
+        Calculate the cum frequency count in current row
+        Recuresively search upwards while decoding the input stream 
+            if node not found or symbol not completely decoded:
+                Recompute range and leave placeholder nodes at skipped nodes
+                decode_symbol()
+            else (when reaches rootz):
+                update node count and update placeholder nodes and output symbol
+
+
+func decode_symbol:
+    Compute cumulative frequency for that row in the tree, and range of input symbol 
+    range = (high - low + 1) / cumulative_frq_count
+    high = low + symbol_high * range - 1;
+	low = low + symbol_low * range;
+
+    while MSB of low and high match:
+        output->write MSB
+        Left Shift low
+        Left Shift high and set 0th bit to 1
+        Left Shift Buffer and set the 0th bit to input bit
+  
