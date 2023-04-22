@@ -13,3 +13,11 @@ g++ Huffman.cpp -o Huffman
 
 ./Huffman
 
+To run LZW
+
+Change contents of text.txt as per requirements and then enter following in terminal:
+
+g++ lzw.cpp -o lzw
+
+./lzw
+
