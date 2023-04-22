@@ -48,8 +48,15 @@ void printCodes(struct HuffmanNode* root, string str)
 	printCodes(root->right, str + "1");
 }
 
+void printOccurences(map<char,int>mp){
+	for(auto it:mp){
+		cout<<it.first<<" : "<<it.second<<endl;
+	}
+	cout<<endl<<endl;
+}
+
 // The main function that builds a Huffman Tree and print codes by calling the printCodes() function
-void HuffmanCodes(char data[], int freq[], int size)
+void HuffmanCodes(map<char,int>mp)
 {
 	struct HuffmanNode *left, *right, *top;
 
@@ -58,8 +65,8 @@ void HuffmanCodes(char data[], int freq[], int size)
 				compare>
 		minHeap;
 
-	for (int i = 0; i < size; ++i)
-		minHeap.push(new HuffmanNode(data[i], freq[i]));
+	for (auto it:mp)
+		minHeap.push(new HuffmanNode(it.first, it.second));
 
 	/* Iterate while size of heap doesn't become 1 -> which will
      represent root of the Huffman Tree */
@@ -93,13 +100,31 @@ void HuffmanCodes(char data[], int freq[], int size)
 
 int main()
 {
+	string s;
 
-	char arr[] = { 'a', 'b', 'c', 'd', 'e', 'f' };
-	int freq[] = { 5, 9, 12, 13, 16, 45 };
+	//Analysing text from text.txt file to encode it using Huffman Coding
+	ifstream myfile ("text.txt");
+	if(myfile.is_open()) { // to check whether the file is open
+		ostringstream ss;
+        ss << myfile.rdbuf(); // reading data
+        s = ss.str();
+	} 
 
-	int size = sizeof(arr) / sizeof(arr[0]);
+	
 
-	HuffmanCodes(arr, freq, size);
+	map<char,int>mp;
+	//To find the frequency of each character in the text file
+	for(int i=0;i<s.size();i++){
+		if(mp.find(s[i])==mp.end()){
+			mp[s[i]]=1;
+		}
+		else{
+			mp[s[i]]+=1;
+		}
+	}
+
+	printOccurences(mp);
+	HuffmanCodes(mp);
 
 	return 0;
 }
