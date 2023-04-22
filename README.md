@@ -9,5 +9,6 @@ To run HuffmanCoding
 
 Change contents of text.txt as per requirements and then enter following in terminal:
 g++ Huffman.cpp -o Huffman
+
 ./Huffman
 
