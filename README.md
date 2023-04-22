@@ -13,6 +13,8 @@ g++ Huffman.cpp -o Huffman
 
 ./Huffman
 
+Binary file compressed.txt gets generated and can be viewed in VS Code with the Hex Editor extension 
+
 To run LZW
 
 Change contents of text.txt as per requirements and then enter following in terminal:
