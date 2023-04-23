@@ -1,1 +1,1 @@
-Text file to be converted to binary
+The text to be converted to binary
