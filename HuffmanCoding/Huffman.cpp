@@ -17,11 +17,16 @@ int main()
 	} 
 
 	map<char,int>mp;
-	
+
+	clock_t t =clock();	
 	charFrequency(mp,text);// calculating frequency of each character
 	printOccurences(mp);// displaying char and number of occurences
 	HuffmanNode* root=HuffmanCodes(mp);//displaying the binary format of the characters acc to Huffman Coding
-	saveEncodedFile(root,mp2);
+	saveEncodedFile(root,mp2);// Generating the binary file
+	t=clock()-t;
+
+	double time_taken=((double)t)/CLOCKS_PER_SEC;
+	printf("Compression Time: %f seconds",time_taken);
 
 	return 0;
 }

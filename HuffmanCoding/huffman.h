@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include<time.h>
 using namespace std;
 map<char,string>mp2;
 
